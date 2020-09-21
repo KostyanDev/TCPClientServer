@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/.idea/TCPClient.iml" filepath="$PROJECT_DIR$/.idea/TCPClient.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/.idea/TCP.iml" filepath="$PROJECT_DIR$/.idea/TCP.iml" />
+>>>>>>> 8c9a7824f7b99f132ffbed734da1a47b67b6d4a1
     </modules>
   </component>
 </project>
