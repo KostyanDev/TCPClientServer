@@ -6,32 +6,14 @@
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
       </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:TCPClientServer" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
     </expand>
-    <select>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </select>
+    <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e153dbe-941a-4f72-aca5-b894f1ac0b71" name="Default Changelist" comment="for stash">
-      <change afterPath="$PROJECT_DIR$/Server/Main2.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/Main3.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/Main4.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="3e153dbe-941a-4f72-aca5-b894f1ac0b71" name="Default Changelist" comment="Git init,first step in TCP&#10;Client and Server part">
+      <change afterPath="$PROJECT_DIR$/Server/Main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/Main.go" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TCPServer.go" beforeDir="false" afterPath="$PROJECT_DIR$/TCPServer.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TCPClient.go" beforeDir="false" afterPath="$PROJECT_DIR$/Client/TCPClient.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +27,7 @@
       </list>
     </option>
   </component>
-  <component name="GOROOT" path="/usr/lib/go-1.13" />
+  <component name="GOROOT" path="$USER_HOME$/sdk/go1.15" />
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
@@ -64,7 +46,6 @@
     <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="GO_FMT" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
@@ -96,38 +77,17 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Git init,first step in TCP&#10;Client and Server part" />
     <MESSAGE value="init Commit&#10;TCP client and base server" />
-    <MESSAGE value="for stash" />
-    <option name="LAST_COMMIT_MESSAGE" value="for stash" />
+    <option name="LAST_COMMIT_MESSAGE" value="init Commit&#10;TCP client and base server" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2711" y="469" key="#GOROOT" timestamp="1600674611192">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state x="2711" y="469" key="#GOROOT/0.27.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600674611192" />
     <state x="2615" y="365" width="592" height="357" key="#Notifications" timestamp="1599831423682">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2615" y="365" width="592" height="357" key="#Notifications/0.27.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1599831423682" />
-    <state x="2625" y="332" width="571" height="423" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1600689638263">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state x="2625" y="332" width="571" height="423" key="#com.intellij.fileTypes.FileTypeChooser/0.27.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600689638263" />
-    <state x="2092" y="100" width="1648" height="880" key="DiffContextDialog" timestamp="1600673801001">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state x="2092" y="100" width="1648" height="880" key="DiffContextDialog/0.27.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600673801001" />
     <state x="2771" y="440" width="289" height="207" key="Github.ShareDialog" timestamp="1599814931519">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2771" y="440" width="289" height="207" key="Github.ShareDialog/0.27.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1599814931519" />
-    <state x="2138" y="108" width="1536" height="879" key="MergeDialog" timestamp="1600673634443">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state x="2138" y="108" width="1536" height="879" key="MergeDialog/0.27.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600673634443" />
-    <state x="2548" y="295" width="726" height="497" key="MultipleFileMergeDialog" timestamp="1600673634460">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state x="2548" y="295" width="726" height="497" key="MultipleFileMergeDialog/0.27.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600673634460" />
     <state x="2405" y="175" width="1022" height="737" key="SettingsEditor" timestamp="1599814710092">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
@@ -136,13 +96,9 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2511" y="276" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1599830843822" />
-    <state x="2530" y="169" width="762" height="749" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1600684334320">
+    <state x="2579" y="239" width="672" height="678" key="search.everywhere.popup" timestamp="1599819064623">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2530" y="169" width="762" height="749" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600684334320" />
-    <state x="2579" y="239" width="672" height="678" key="search.everywhere.popup" timestamp="1600693803664">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state x="2579" y="239" width="672" height="678" key="search.everywhere.popup/0.27.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600693803664" />
+    <state x="2579" y="239" width="672" height="678" key="search.everywhere.popup/0.27.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1599819064623" />
   </component>
 </project>
