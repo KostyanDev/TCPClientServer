@@ -8,26 +8,11 @@ import (
 	"reflect"
 	"regexp"
 	"strings"
+	"TCP/Model"
 )
-
-
-type Client struct {
-	name string
-	id   int
-	conn net.Conn
-	commands chan<-command
-}
 
 // Hold the user list
 var users = make(chan []string)
-type Server struct {
-	allClients       map[net.Conn]Client
-	allNames        []string
-	totalClients     int
-	connectedClients int
-	listener         net.Listener
-}
-
 
 var validName = regexp.MustCompile("^([A-Z]|[a-z]|[0-9]){4,12}$")
 
@@ -48,19 +33,7 @@ func getValidName(conn net.Conn) string {
 	return name
 }
 
-func disconnect(conn net.Conn, server *Server) {
-	// Properly close the connection and delete the client from the server
-	client := server.allClients[conn]
-	name := client.name
-	i := find(server.allNames, name)
-	server.allNames = append(server.allNames[:i], server.allNames[i+1:]...)
-	users <- server.allNames
-	server.connectedClients--
-	conn.Close()
-	delete(server.allClients, conn)
-	log.Printf("Client with name %s disconnected", name)
-	log.Printf("There are %d connected clients", server.connectedClients)
-}
+
 
 func find(s interface{}, elem interface{}) int {
 	// Return -1 if elem is in s, its index in s otherwise
@@ -91,61 +64,12 @@ func contains(s interface{}, elem interface{}) bool {
 	return false
 }
 
-func (c *Client)readInput(){
-	for {
-		msg, err := bufio.NewReader(c.conn).ReadString('\n')
-		if err != nil {
-			return
-		}
 
-		msg = strings.Trim(msg, "\r\n")
-
-		args := strings.Split(msg, " ")
-		cmd := strings.TrimSpace(args[0])
-
-		var comMap = map[string]command{
-			"/nick": {
-				id:     NICK,
-				client: c,
-				args:   args,
-			},
-			"/join": {
-				id:     JOIN,
-				client: c,
-				args:   args,
-			},
-			"/rooms": {
-				id:     ROOMS,
-				client: c,
-			},
-			"/msg": {
-				id:     MSG,
-				client: c,
-				args:   args,
-			},
-			"/quit": {
-				id:     QUIT,
-				client: c,
-			},
-			"/members": {
-				id:     MEMBERS,
-				client: c,
-			},
-		}
-
-		k, ok := comMap[cmd]
-		if !ok {
-			c.err(fmt.Errorf("unknown command: %s", cmd))
-		} else {
-			c.commands <- k
-		}
-	}
-}
 
 func main() {
 	// Initialization
 
-	server := new(Server)
+	server := new(*Serve)
 	server.allClients = make(map[net.Conn]Client)
 	// Server will push new connections to it
 	newConnections := make(chan net.Conn)
