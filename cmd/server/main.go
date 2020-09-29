@@ -1,7 +1,7 @@
 package main
 
 import (
-	"TCP/model"
+	"TCPClient/model"
 	"log"
 	"net"
 	"os"
@@ -10,9 +10,9 @@ import (
 func main() {
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 
-	server := Server()
+	server := model.StartServer()
 
-	listener, err := net.Listen("tcp", ":8081")
+	listener, err := net.Listen("tcp", ":8082")
 	if err != nil {
 		log.Println("Error:", err)
 		os.Exit(1)
@@ -26,8 +26,6 @@ func main() {
 			log.Println("Error:", err)
 			continue
 		}
-
-		server.addUser(models.NewUser(conn))
-		server.startServer()
+		server.Join(model.NewUser(conn))
 	}
 }
