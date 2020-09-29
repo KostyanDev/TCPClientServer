@@ -11,9 +11,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e153dbe-941a-4f72-aca5-b894f1ac0b71" name="Default Changelist" comment="Git init,first step in TCP&#10;Client and Server part">
-      <change afterPath="$PROJECT_DIR$/Server/Main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Model/ClientModel.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Model/ServerModel.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/Command.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/Main02.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TCPClient.go" beforeDir="false" afterPath="$PROJECT_DIR$/Client/TCPClient.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Main.go" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,10 +50,13 @@
     <property name="GO_FMT" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="configurable.Global.GOPATH.is.expanded" value="true" />
+    <property name="configurable.Module.GOPATH.is.expanded" value="false" />
+    <property name="configurable.Project.GOPATH.is.expanded" value="true" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
+    <property name="settings.editor.selected.configurable" value="go.vgo" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -80,6 +86,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="init Commit&#10;TCP client and base server" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="725" y="-814" width="438" height="576" key="#Build_Tags_&amp;_Vendoring" timestamp="1600718692562">
+      <screen x="0" y="-1057" width="1920" height="1057" />
+    </state>
+    <state x="725" y="-814" width="438" height="576" key="#Build_Tags_&amp;_Vendoring/0.-1057.1920.1057/0.23.1920.1076@0.-1057.1920.1057" timestamp="1600718692562" />
     <state x="2615" y="365" width="592" height="357" key="#Notifications" timestamp="1599831423682">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
@@ -88,9 +98,10 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2771" y="440" width="289" height="207" key="Github.ShareDialog/0.27.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1599814931519" />
-    <state x="2405" y="175" width="1022" height="737" key="SettingsEditor" timestamp="1599814710092">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state x="514" y="-881" width="1022" height="737" key="SettingsEditor" timestamp="1600640384911">
+      <screen x="0" y="-1057" width="1920" height="1057" />
     </state>
+    <state x="514" y="-881" key="SettingsEditor/0.-1057.1920.1057/0.23.1920.1080@0.-1057.1920.1057" timestamp="1600640384911" />
     <state x="2405" y="175" width="1022" height="737" key="SettingsEditor/0.27.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1599814710092" />
     <state x="2511" y="276" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1599830843822">
       <screen x="1920" y="0" width="1920" height="1080" />
