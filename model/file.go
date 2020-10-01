@@ -6,19 +6,31 @@ import (
 	"net"
 	"os"
 	"path/filepath"
+	"runtime"
 	"strconv"
+	"strings"
 )
 
 const BUFFERSIZE = 1024
 
 type File struct {
 	name string
-	size float32
 }
 
-func (f *File) ListOfFile() []string {
+func newFile(name string) *File {
+	return &File{
+		name: name,
+	}
+}
+
+func (f *File) ListOfFile(user *User) {
 	var files []string
-	root := "classic root "
+	var (
+		_, b, _, _ = runtime.Caller(0)
+		basepath   = filepath.Dir(b)
+	)
+
+	root := basepath
 	err := filepath.Walk(root, func(path string, info os.FileInfo, err error) error {
 		files = append(files, path)
 		return err
@@ -29,11 +41,13 @@ func (f *File) ListOfFile() []string {
 	for _, file := range files {
 		f.name = file
 	}
-	return files
+	user.outgoing <- strings.Join(files[:], ", \n")
+	user.outgoing <- "\n"
 }
+
 func (f *File) SendFiles(connection net.Conn, name string) {
 	fmt.Println("A client has connected!")
-	defer connection.Close()
+	//defer connection.Close()
 	file, err := os.Open(name)
 	if err != nil {
 		fmt.Println(err)
@@ -58,7 +72,7 @@ func (f *File) SendFiles(connection net.Conn, name string) {
 		}
 		connection.Write(sendBuffer)
 	}
-	fmt.Println("File has been sent, closing connection!")
+	fmt.Println("File has been sent!")
 	return
 }
 func downloadFile(name string) {

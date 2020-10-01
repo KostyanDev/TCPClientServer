@@ -7,56 +7,57 @@ import (
 )
 
 type Message struct {
-	time    time.Time
-	user    *User
-	text    string
-	command *Command
-	conn 	net.Conn
+	time     time.Time
+	user     *User
+	text     string
+	command  *Command
+	conn     net.Conn
 	messages []string
-	server 	*Server
+	server   *Server
 }
 
-func NewMessage(time time.Time, user *User, text string) *Message {
+func NewMessage(time time.Time, user *User, text string, conn net.Conn) *Message {
 	return &Message{
 		time: time,
 		user: user,
 		text: text,
+		conn: conn,
 	}
 }
 
-
-func (message *Message)ReadInput(msg *Message, users []*User) {
+func (message *Message) ReadInput(msg *Message, users []*User, user *User) {
 
 	tmp := "/"
 	if strings.Contains(msg.text, tmp) == true {
-			message.command.CommandRead(msg)
+		CommandRead(msg)
 	} else {
-		message.SendAll(msg.text, users)
+		message.SendAll(msg.text, users, user)
 	}
 	//for {
-		//msg, err := bufio.NewReader(message.conn).ReadString('\n')
-		//if err != nil {
-		//	return
-		//}
+	//msg, err := bufio.NewReader(message.conn).ReadString('\n')
+	//if err != nil {
+	//	return
+	//}
 
+	//msgString := string(msg.text)
+	//msgString = strings.Trim(msgString, "\r\n")
+	//
+	//args := strings.Split(msg.text, " ")
+	//cmd := strings.TrimSpace(args[0])
 
-		//msgString := string(msg.text)
-		//msgString = strings.Trim(msgString, "\r\n")
-		//
-		//args := strings.Split(msg.text, " ")
-		//cmd := strings.TrimSpace(args[0])
-
-		//
-		//message.command.CommandRead(cmd)
+	//
+	//message.command.CommandRead(cmd)
 
 	//}
 }
 
-func (m *Message) SendAll(msg string, users []*User) {
+func (m *Message) SendAll(msg string, users []*User, currentUser *User) {
+
 	for _, user := range users {
 		user.outgoing <- msg
 	}
 }
+
 //func (msg *Message) String() string {
 //	return fmt.Sprintf("%v [%v]: %v", msg.user.name, msg.time.Format("15:04:00"), msg.text)
 //}
@@ -71,7 +72,6 @@ func (m *Message) SendAll(msg string, users []*User) {
 //		text = arrStr[1]
 //	}
 //}
-
 
 //var comMap = map[string]{
 //	"/nick": {

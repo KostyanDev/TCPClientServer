@@ -8,7 +8,6 @@ import (
 )
 
 type User struct {
-	name     string
 	incoming chan *Message
 	outgoing chan string
 	conn     net.Conn
@@ -22,7 +21,6 @@ func NewUser(conn net.Conn) *User {
 	writer := bufio.NewWriter(conn)
 
 	u := &User{
-		name:     "ChangeYourName",
 		incoming: make(chan *Message, 3),
 		outgoing: make(chan string, 3),
 		conn:     conn,
@@ -38,7 +36,6 @@ func (u *User) Listen() {
 	go u.Write()
 }
 
-
 func (u *User) Read() {
 	for {
 		str, err := u.reader.ReadString('\n')
@@ -46,11 +43,11 @@ func (u *User) Read() {
 			log.Println(err)
 			break
 		}
-		msg := NewMessage(time.Now(), u, str)
+		msg := NewMessage(time.Now(), u, str, u.conn)
 		u.incoming <- msg
 	}
 	close(u.incoming)
-	log.Printf("Closed %s's incoming channel read thread", u.name)
+	log.Printf("Closed s incoming channel read thread")
 }
 
 func (u *User) Write() {
@@ -65,8 +62,5 @@ func (u *User) Write() {
 			break
 		}
 	}
-	log.Printf("Closed %s's write thread", u.name)
+	log.Printf("Closed write thread")
 }
-
-
-

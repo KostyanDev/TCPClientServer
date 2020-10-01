@@ -6,18 +6,20 @@ import (
 )
 
 type Server struct {
-	users      []*User
-	allClients map[net.Conn]User
-	message    *Message
-	incoming   chan *Message
-	join       chan *User
-	leave      chan *User
+	users       []*User
+	currentUser *User
+	allClients  map[net.Conn]User
+	incoming    chan *Message
+	join        chan *User
+	leave       chan *User
 }
 
 func StartServer() *Server {
 	server := &Server{
 		users:    make([]*User, 0),
 		incoming: make(chan *Message),
+		join:     make(chan *User),
+		leave:    make(chan *User),
 	}
 	server.Listen()
 	return server
@@ -27,10 +29,7 @@ func (s *Server) Listen() {
 		for {
 			select {
 			case msg := <-s.incoming:
-				//s.message.command.SendAll(msg, s.users)
-				//s.SendAll(msg)
-				s.message.ReadInput(msg,s.users)
-				//fmt.Println("here a message", msg)
+				msg.ReadInput(msg, s.users, s.currentUser)
 			case user := <-s.join:
 				s.Join(user)
 			case user := <-s.leave:
@@ -63,7 +62,7 @@ func (s *Server) Leave(user *User) {
 		}
 	}
 	close(user.outgoing)
-	log.Printf("Closed %s's outgoing channel.\n", user.name)
+	log.Printf("Closed outgoing channel.\n")
 }
 
 // Почитай про каналы и горутины.
@@ -72,6 +71,7 @@ func (s *Server) SendAll2(msg *Message) {
 		user.outgoing <- msg.text
 	}
 }
+
 //func (s *Server) SendMessage(msg *Message) {
 //	s.message = append(s.message, msg)
 //

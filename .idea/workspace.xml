@@ -6,17 +6,44 @@
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
       </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:TCPClientServer" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
     </expand>
-    <select />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e153dbe-941a-4f72-aca5-b894f1ac0b71" name="Default Changelist" comment="Git init,first step in TCP&#10;Client and Server part">
-      <change afterPath="$PROJECT_DIR$/Model/ClientModel.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Model/ServerModel.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/Command.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/Main02.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/Main.go" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/TCPClient.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Main2.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Main3.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Main4.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TCPServer.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/client/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/client/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/client/test.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/server/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/server/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/server/test.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/command.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/command.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/file.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/file.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/message.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/message.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/serverModel.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/serverModel.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/userModel.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/userModel.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.go" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +57,7 @@
       </list>
     </option>
   </component>
-  <component name="GOROOT" path="$USER_HOME$/sdk/go1.15" />
+  <component name="GOROOT" path="/usr/lib/go-1.13" />
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
@@ -38,6 +65,9 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GoLibraries">
+    <option name="indexEntireGoPath" value="false" />
   </component>
   <component name="ProjectId" id="1hMHMnI44IZ7qxyGtQO50L6W84c" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -55,8 +85,9 @@
     <property name="configurable.Project.GOPATH.is.expanded" value="true" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="go.vgo" />
+    <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/TCPClient" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -85,31 +116,50 @@
     <MESSAGE value="init Commit&#10;TCP client and base server" />
     <option name="LAST_COMMIT_MESSAGE" value="init Commit&#10;TCP client and base server" />
   </component>
+  <component name="VgoProject">
+    <integration-enabled>true</integration-enabled>
+  </component>
   <component name="WindowStateProjectService">
     <state x="725" y="-814" width="438" height="576" key="#Build_Tags_&amp;_Vendoring" timestamp="1600718692562">
       <screen x="0" y="-1057" width="1920" height="1057" />
     </state>
     <state x="725" y="-814" width="438" height="576" key="#Build_Tags_&amp;_Vendoring/0.-1057.1920.1057/0.23.1920.1076@0.-1057.1920.1057" timestamp="1600718692562" />
+    <state x="2711" y="469" key="#GOROOT" timestamp="1601367056084">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2711" y="469" key="#GOROOT/0.27.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601367056084" />
     <state x="2615" y="365" width="592" height="357" key="#Notifications" timestamp="1599831423682">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2615" y="365" width="592" height="357" key="#Notifications/0.27.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1599831423682" />
+    <state x="2621" y="332" width="927" height="430" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1601559639351">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2621" y="332" width="927" height="430" key="#com.intellij.fileTypes.FileTypeChooser/0.27.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601559639351" />
+    <state x="2699" y="298" width="424" height="491" key="FileChooserDialogImpl" timestamp="1601393627995">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2699" y="298" width="424" height="491" key="FileChooserDialogImpl/0.27.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601393627995" />
     <state x="2771" y="440" width="289" height="207" key="Github.ShareDialog" timestamp="1599814931519">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2771" y="440" width="289" height="207" key="Github.ShareDialog/0.27.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1599814931519" />
-    <state x="514" y="-881" width="1022" height="737" key="SettingsEditor" timestamp="1600640384911">
-      <screen x="0" y="-1057" width="1920" height="1057" />
+    <state x="2405" y="175" width="1022" height="737" key="SettingsEditor" timestamp="1601541672333">
+      <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="514" y="-881" key="SettingsEditor/0.-1057.1920.1057/0.23.1920.1080@0.-1057.1920.1057" timestamp="1600640384911" />
-    <state x="2405" y="175" width="1022" height="737" key="SettingsEditor/0.27.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1599814710092" />
+    <state x="2405" y="175" width="1022" height="737" key="SettingsEditor/0.27.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601541672333" />
     <state x="2511" y="276" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1599830843822">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2511" y="276" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1599830843822" />
-    <state x="2579" y="239" width="672" height="678" key="search.everywhere.popup" timestamp="1599819064623">
+    <state x="2526" y="153" width="770" height="780" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1601561441405">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2579" y="239" width="672" height="678" key="search.everywhere.popup/0.27.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1599819064623" />
+    <state x="2526" y="153" width="770" height="780" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601561441405" />
+    <state x="2579" y="239" width="672" height="678" key="search.everywhere.popup" timestamp="1601543042553">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2579" y="239" width="672" height="678" key="search.everywhere.popup/0.27.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601543042553" />
   </component>
 </project>
