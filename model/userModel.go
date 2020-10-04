@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"log"
 	"net"
-	"time"
 )
 
 type User struct {
@@ -13,7 +12,6 @@ type User struct {
 	conn     net.Conn
 	reader   *bufio.Reader
 	writer   *bufio.Writer
-	command  *Command
 }
 
 func NewUser(conn net.Conn) *User {
@@ -43,8 +41,13 @@ func (u *User) Read() {
 			log.Println(err)
 			break
 		}
-		msg := NewMessage(time.Now(), u, str, u.conn)
+		msg := NewMessage(u, str, u.conn)
 		u.incoming <- msg
+
+		//tmp := "/download"
+		//if strings.Contains(str,tmp) == true{
+		//	DownloadFile(u.conn)
+		//}
 	}
 	close(u.incoming)
 	log.Printf("Closed s incoming channel read thread")
@@ -64,3 +67,43 @@ func (u *User) Write() {
 	}
 	log.Printf("Closed write thread")
 }
+
+//func DownloadFile(conn net.Conn) {
+//	//defer conn.Close() // не надо ставить - это означает отключение связи клиента с сервером
+//	//time.Sleep(2 * time.Second)
+//
+//	fmt.Println("Connected to server, start receiving the file name and file size")
+//	bufferFileName := make([]byte, 64)
+//	bufferFileSize := make([]byte, 10)
+//	_, err := conn.Read(bufferFileSize)
+//	if err != nil {
+//		log.Println("read bufferFileSize bad ")
+//	}
+//	fileSize, _ := strconv.ParseInt(strings.Trim(string(bufferFileSize), ":"), 10, 64)
+//
+//	_, err = conn.Read(bufferFileName)
+//	if err != nil {
+//		log.Println("read 2 bufferFileSize bad ")
+//	}
+//
+//	fileName := strings.Trim(string(bufferFileName), ":")
+//
+//	newFile, err := os.Create(fileName)
+//	if err != nil {
+//		log.Println("Error 180")
+//		return
+//	}
+//	defer newFile.Close()
+//	var receivedBytes int64
+//
+//	for {
+//		if (fileSize - receivedBytes) < BUFFERSIZE {
+//			io.CopyN(newFile, conn, (fileSize - receivedBytes))
+//			conn.Read(make([]byte, (receivedBytes+BUFFERSIZE)-fileSize))
+//			break
+//		}
+//		io.CopyN(newFile, conn, BUFFERSIZE)
+//		receivedBytes += BUFFERSIZE
+//	}
+//	fmt.Println("Received file completely!")
+//}

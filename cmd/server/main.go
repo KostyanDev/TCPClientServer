@@ -16,7 +16,7 @@ func main() {
 
 	//server := model.StartServer()
 
-	listener, err := net.Listen("tcp", ":8083")
+	listener, err := net.Listen("tcp", ":8085")
 	if err != nil {
 		log.Println("Error:", err)
 		os.Exit(1)
@@ -54,7 +54,7 @@ func SendFiles(connection net.Conn, name string) {
 	connection.Write([]byte(fileSize))
 	connection.Write([]byte(fileName))
 	sendBuffer := make([]byte, BUFFERSIZE)
-	fmt.Println("Start sending file!")
+	fmt.Println("Start sending file!\n")
 	for {
 		_, err = file.Read(sendBuffer)
 		if err == io.EOF {
@@ -62,7 +62,7 @@ func SendFiles(connection net.Conn, name string) {
 		}
 		connection.Write(sendBuffer)
 	}
-	fmt.Println("File has been sent!")
+	fmt.Println("File has been sent! \n")
 	return
 }
 func downloadFile(name string) {

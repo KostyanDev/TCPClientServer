@@ -18,15 +18,15 @@ const BUFFERSIZE = 1024
 func main() {
 	wg.Add(1)
 
-	conn, err := net.Dial("tcp", ":8083")
+	conn, err := net.Dial("tcp", ":8085")
 	if err != nil {
 		fmt.Println(err)
 	}
 
-	go DownloadFile(conn)
-	//go Read(conn)
-	//go Write(conn)
 
+	go Read(conn)
+	go Write(conn)
+	//go DownloadFile(conn)
 	wg.Wait()
 }
 
@@ -55,6 +55,7 @@ func Write(conn net.Conn) {
 			os.Exit(1)
 		}
 		_, err = writer.WriteString(str)
+
 		if err != nil {
 			os.Exit(2)
 		}
@@ -62,60 +63,91 @@ func Write(conn net.Conn) {
 		if err = writer.Flush(); err != nil {
 			fmt.Println(err)
 		}
+
+		tmp := "/download"
+		if strings.Contains(str,tmp) {
+			DownloadFile(conn)
+		}
 	}
 }
 
-//func DownloadFile(conn io.ReadCloser) error {
-//	//defer conn.Close()
-//	reader := bufio.NewReader(conn)
-//	// читаем первую строку - это будет название файла
-//	line, err := reader.ReadString('\n')
-//	if err != nil {
-//		return err
-//	}
-//	line = strings.TrimSpace(line)
-//	// создаём файл с заданным именем в текущей директории
-//	file, err := os.Create(line)
-//	if err != nil {
-//		return err
-//	}
-//	// и копируем в него всё что дальше приходит от клиента
-//	_, err = io.Copy(file, conn)
-//	return err
-//}
-//
 func DownloadFile(conn net.Conn) {
-	defer conn.Close() // не надо ставить - это означает отключение связи клиента с сервером
-	//time.Sleep(2 * time.Second)
-	for {
+	defer conn.Close()
+	fmt.Println("Connected to server, start receiving the file name and file size")
+	bufferFileName := make([]byte, 64)
+	bufferFileSize := make([]byte, 10)
 
-		fmt.Println("Connected to server, start receiving the file name and file size")
-		bufferFileName := make([]byte, 64)
-		bufferFileSize := make([]byte, 10)
-		conn.Read(bufferFileSize)
-		fileSize, _ := strconv.ParseInt(strings.Trim(string(bufferFileSize), ":"), 10, 64)
+	conn.Read(bufferFileSize)
+	fileSize, _ := strconv.ParseInt(strings.Trim(string(bufferFileSize), ":"), 10, 64)
 
-		conn.Read(bufferFileName)
+	conn.Read(bufferFileName)
+	fileName := strings.Trim(string(bufferFileName), ":")
 
-		fileName := strings.Trim(string(bufferFileName), ":")
+	newFile, err := os.Create(fileName)
 
-		newFile, err := os.Create(fileName)
-		if err != nil {
-			panic(err)
-		}
-		defer newFile.Close()
-		var receivedBytes int64
-
-		for {
-			if (fileSize - receivedBytes) < BUFFERSIZE {
-				io.CopyN(newFile, conn, (fileSize - receivedBytes))
-				conn.Read(make([]byte, (receivedBytes+BUFFERSIZE)-fileSize))
-				break
-			}
-			io.CopyN(newFile, conn, BUFFERSIZE)
-			receivedBytes += BUFFERSIZE
-		}
-		fmt.Println("Received file completely!\n")
+	if err != nil {
+		panic(err)
 	}
+	defer newFile.Close()
+	var receivedBytes int64
+
+	for {
+		if (fileSize - receivedBytes) < BUFFERSIZE {
+			io.CopyN(newFile, conn, (fileSize - receivedBytes))
+			conn.Read(make([]byte, (receivedBytes+BUFFERSIZE)-fileSize))
+			break
+		}
+		io.CopyN(newFile, conn, BUFFERSIZE)
+		receivedBytes += BUFFERSIZE
+	}
+	fmt.Println("Received file completely!")
 
 }
+//
+//defer conn.Close() // не надо ставить - это означает отключение связи клиента с сервером
+//time.Sleep(200 * time.Second)
+
+
+//	fmt.Println("Connected to server, start receiving the file name and file size")
+//	bufferFileName := make([]byte, 64)
+//	bufferFileSize := make([]byte, 10)
+//
+//	val3 := bufio.NewReader(conn)
+//	fmt.Println("val3", val3)
+//	val1, err := conn.Read(bufferFileName)
+//
+//	fmt.Println("bufferFileSize", val1)
+//
+//	if err != nil {
+//		log.Println("read 2 bufferFileSize bad ")
+//	}
+//
+//	fileName := strings.Trim(string(bufferFileName), ":")
+//
+//	val2, err := conn.Read(bufferFileSize)
+//	fmt.Println("bufferFileSize", val2)
+//	if err != nil {
+//		log.Println("read bufferFileSize bad ")
+//	}
+//	fileSize, _ := strconv.ParseInt(strings.Trim(string(bufferFileSize), ":"), 10, 64)
+//
+//
+//	newFile, err := os.Create(fileName)
+//	if err != nil {
+//		//panic(err)
+//		fmt.Println("panic", err)
+//	}
+//	defer newFile.Close()
+//	var receivedBytes int64
+//
+//	for {
+//		if (fileSize - receivedBytes) < BUFFERSIZE {
+//			io.CopyN(newFile, conn, (fileSize - receivedBytes))
+//			conn.Read(make([]byte, (receivedBytes+BUFFERSIZE)-fileSize))
+//			break
+//		}
+//		io.CopyN(newFile, conn, BUFFERSIZE)
+//		receivedBytes += BUFFERSIZE
+//	}
+//	fmt.Println("Received file completely!")
+// /download 1

@@ -3,6 +3,7 @@ package model
 import (
 	"fmt"
 	"io"
+	"log"
 	"net"
 	"os"
 	"path/filepath"
@@ -15,15 +16,17 @@ const BUFFERSIZE = 1024
 
 type File struct {
 	name string
+	conn net.Conn
 }
 
-func newFile(name string) *File {
+func NewFile(name string, conn net.Conn) *File {
 	return &File{
 		name: name,
+		conn: conn,
 	}
 }
 
-func (f *File) ListOfFile(user *User) {
+func (f *File) listOfFile(user *User) {
 	var files []string
 	var (
 		_, b, _, _ = runtime.Caller(0)
@@ -45,12 +48,14 @@ func (f *File) ListOfFile(user *User) {
 	user.outgoing <- "\n"
 }
 
-func (f *File) SendFiles(connection net.Conn, name string) {
+func (f *File) sendFiles( name string)  {
 	fmt.Println("A client has connected!")
 	//defer connection.Close()
-	file, err := os.Open(name)
+	//time.Sleep(20 * time.Second)
+	file, err := os.Open("Test")
+	fmt.Println("file is :",file)
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println("file isn't open :",err)
 		return
 	}
 	fileInfo, err := file.Stat()
@@ -60,17 +65,27 @@ func (f *File) SendFiles(connection net.Conn, name string) {
 	}
 	fileSize := fillString(strconv.FormatInt(fileInfo.Size(), 10), 10)
 	fileName := fillString(fileInfo.Name(), 64)
+
 	fmt.Println("Sending filename and filesize!")
-	connection.Write([]byte(fileSize))
-	connection.Write([]byte(fileName))
+	_,err = f.conn.Write([]byte(fileSize))
+	if err != nil {
+		log.Println("fileSize bad valye ")
+	}
+	_, err = f.conn.Write([]byte(fileName))
+	if err != nil {
+		log.Println("fileName bad valye ")
+	}
+
 	sendBuffer := make([]byte, BUFFERSIZE)
+
 	fmt.Println("Start sending file!")
 	for {
 		_, err = file.Read(sendBuffer)
-		if err == io.EOF {
-			break
-		}
-		connection.Write(sendBuffer)
+			if err == io.EOF {
+				log.Printf("Error is : %s", err)
+				break
+			}
+		f.conn.Write(sendBuffer)
 	}
 	fmt.Println("File has been sent!")
 	return

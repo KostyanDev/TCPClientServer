@@ -41,8 +41,8 @@ func (s *Server) Listen() {
 
 func (s *Server) Join(user *User) {
 	s.users = append(s.users, user)
-	log.Printf("New user (%v) joined in lobby.\n", user.conn.RemoteAddr().String())
-	user.outgoing <- "Welcome to the Chat! Type \"/help\" to get a list commands.\n"
+	log.Printf("New user (%v) connect to the server.\n", user.conn.RemoteAddr().String())
+	user.outgoing <- "Welcome to the Server! Type \"/help\" to get a list commands.\n"
 
 	// Это получает все сообщения с каждого юзера и перемещает в канал сервера.
 	go func() {
