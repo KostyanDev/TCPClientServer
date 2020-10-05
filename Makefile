@@ -1,37 +1,82 @@
 include .env
-export
 
-BIN_DIR = bin/
-CLIENT_MAIN = cmd/client/main.go
-CLIENT_NAME = client
-SERVER_NAME = tcp_server
-SERVER_IMAGE_NAME = tcp_server
+PROJECTNAME=$TCPClient
 
-default: server-build server-run client-build client-run
+# Go related variables.
+GOBASE=$(shell pwd)
+GOBIN=$(GOBASE)/bin
+GOFILES=$(wildcard *.go)
 
-client-build: | $(BIN_DIR)
-	@printf "\033[32;1mBuild client\033[0m\n"
-	@go build -o $(BIN_DIR)$(CLIENT_NAME) $(CLIENT_MAIN)
 
-client-run:
-	@printf "\033[32;1mRun client\033[0m\n"
-	@$(BIN_DIR)$(CLIENT_NAME)
+# Make is verbose in Linux. Make it silent.
+MAKEFLAGS += --silent
 
-$(BIN_DIR):
-	@mkdir -p $(BIN_DIR)
+## install: Install missing dependencies. Runs `go get` internally. e.g; make install get=github.com/foo/bar
+install: go-get
 
-server-run:
-	@printf "\033[32;1mRun server\033[0m\n"
-	@docker run -d --rm -e SERVER_PORT=$(PORT) -p $(PORT):$(PORT) --name $(SERVER_NAME) $(SERVER_IMAGE_NAME)
+## start: Start in development mode. Auto-starts when code changes.
+ start: bash -c "trap 'make stop' EXIT; $(MAKE) compile start-server watch run='make compile start-server'"
 
-server-build:
-	@printf "\033[32;1mBuild server\033[0m\n"
-	@docker build -t $(SERVER_IMAGE_NAME) .
+## stop: Stop development mode.
+stop: stop-server
 
+start-server: stop-server
+	@echo "  >  $(PROJECTNAME) is available at $(ADDR)"
+	@-$(GOBIN)/$(PROJECTNAME) 2>&1 & echo $$! > $(PID)
+	@cat $(PID) | sed "/^/s/^/  \>  PID: /"
+
+stop-server:
+	@-touch $(PID)
+	@-kill `cat $(PID)` 2> /dev/null || true
+	@-rm $(PID)
+
+## watch: Run given command when code changes. e.g; make watch run="echo 'hey'"
+watch:
+	@GOPATH=$(GOPATH) GOBIN=$(GOBIN) yolo -i . -e vendor -e bin -c "$(run)"
+
+restart-server: stop-server start-server
+
+## compile: Compile the binary.
+compile:
+	@-touch $(STDERR)
+	@-rm $(STDERR)
+	@-$(MAKE) -s go-compile 2> $(STDERR)
+	@cat $(STDERR) | sed -e '1s/.*/\nError:\n/'  | sed 's/make\[.*/ /' | sed "/^/s/^/     /" 1>&2
+
+## exec: Run given command, wrapped with custom GOPATH. e.g; make exec run="go test ./..."
+exec:
+	@GOPATH=$(GOPATH) GOBIN=$(GOBIN) $(run)
+
+## clean: Clean build files. Runs `go clean` internally.
 clean:
-	@rm -rf $(BIN_DIR)
-	@docker stop $(SERVER_NAME)
-	@docker rmi $(SERVER_IMAGE_NAME)
-	@docker image prune
+	@(MAKEFILE) go-clean
 
-.PHONY: server-run server-build default
+go-compile: go-clean go-get go-build
+
+go-build:
+	@echo "  >  Building binary..."
+	@GOPATH=$(GOPATH) GOBIN=$(GOBIN) go build -o $(GOBIN)/$(PROJECTNAME) $(GOFILES)
+
+go-generate:
+	@echo "  >  Generating dependency files..."
+	@GOPATH=$(GOPATH) GOBIN=$(GOBIN) go generate $(generate)
+
+go-get:
+	@echo "  >  Checking if there is any missing dependencies..."
+	@GOPATH=$(GOPATH) GOBIN=$(GOBIN) go get $(get)
+
+go-install:
+	@GOPATH=$(GOPATH) GOBIN=$(GOBIN) go install $(GOFILES)
+
+go-clean:
+	@echo "  >  Cleaning build cache"
+	@GOPATH=$(GOPATH) GOBIN=$(GOBIN) go clean
+
+.PHONY: help
+all: help
+help: Makefile
+	@echo
+	@echo " Choose a command run in "$(PROJECTNAME)":"
+	@echo
+	@sed -n 's/^##//p' $< | column -t -s ':' |  sed -e 's/^/ /'
+	@echo

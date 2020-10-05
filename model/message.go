@@ -1,12 +1,12 @@
 package model
 
 import (
+	"fmt"
 	"net"
 	"strings"
 )
 
 type Message struct {
-
 	user     *User
 	text     string
 	conn     net.Conn
@@ -14,7 +14,7 @@ type Message struct {
 	server   *Server
 }
 
-func NewMessage( user *User, text string, conn net.Conn) *Message {
+func NewMessage(user *User, text string, conn net.Conn) *Message {
 	return &Message{
 		user: user,
 		text: text,
@@ -34,7 +34,22 @@ func (message *Message) ReadInput(msg *Message, users []*User, user *User) {
 
 func (m *Message) SendAll(msg string, users []*User, currentUser *User) {
 
-	for _, user := range users {
-		user.outgoing <- msg
+	var newUsers []*User
+	for _, val := range users {
+
+		newUsers = append(newUsers, val)
 	}
+	fmt.Println("newUsers", newUsers)
+	//var newUsers []*User
+	//for index,val := range users{
+	//	if val == currentUser {
+	//		m.conn.RemoteAddr()
+	//		newUsers = append(newUsers[:index], newUsers[index + 1:]...)
+	//	}
+	//}
+	//fmt.Println("old users,", users)
+	//fmt.Println("new users,", newUsers)
+	//for _, user := range users {
+	//	user.outgoing <- msg
+	//}
 }

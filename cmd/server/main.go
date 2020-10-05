@@ -1,6 +1,7 @@
 package main
 
 import (
+	"TCPClient/model"
 	"fmt"
 	"io"
 	"log"
@@ -14,7 +15,7 @@ const BUFFERSIZE = 1024
 func main() {
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 
-	//server := model.StartServer()
+	server := model.StartServer()
 
 	listener, err := net.Listen("tcp", ":8085")
 	if err != nil {
@@ -30,8 +31,8 @@ func main() {
 			log.Println("Error:", err)
 			continue
 		}
-		//server.Join(model.NewUser(conn))
 		SendFiles(conn, "Test")
+		server.Join(model.NewUser(conn))
 
 	}
 }

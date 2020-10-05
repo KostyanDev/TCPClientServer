@@ -22,11 +22,12 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
-
-
+	wg.Add(1)
+	DownloadFile(conn)
+	wg.Done()
 	go Read(conn)
 	go Write(conn)
-	//go DownloadFile(conn)
+
 	wg.Wait()
 }
 
@@ -64,16 +65,17 @@ func Write(conn net.Conn) {
 			fmt.Println(err)
 		}
 
-		tmp := "/download"
-		if strings.Contains(str,tmp) {
-			DownloadFile(conn)
-		}
+		//tmp := "/download"
+		//if strings.Contains(str,tmp) {
+		//	DownloadFile(conn)
+		//}
 	}
 }
 
 func DownloadFile(conn net.Conn) {
-	defer conn.Close()
-	fmt.Println("Connected to server, start receiving the file name and file size")
+
+	//defer conn.Close()
+	fmt.Println("Automate download main file")
 	bufferFileName := make([]byte, 64)
 	bufferFileSize := make([]byte, 10)
 
@@ -83,11 +85,11 @@ func DownloadFile(conn net.Conn) {
 	conn.Read(bufferFileName)
 	fileName := strings.Trim(string(bufferFileName), ":")
 
-	newFile, err := os.Create(fileName)
-
+	newFile, err := os.Create(chekNameOfFile(fileName))
 	if err != nil {
 		panic(err)
 	}
+
 	defer newFile.Close()
 	var receivedBytes int64
 
@@ -101,12 +103,35 @@ func DownloadFile(conn net.Conn) {
 		receivedBytes += BUFFERSIZE
 	}
 	fmt.Println("Received file completely!")
-
 }
+
+func chekNameOfFile(newFileName string) string {
+
+	var returnValue string
+	f, err := os.Open("./")
+	if err != nil {
+		fmt.Println("err with dirName")
+	}
+	list, err := f.Readdir(-1)
+	f.Close()
+	if err != nil {
+		fmt.Println("err with Readdir")
+	}
+	tmpFileName := newFileName
+	for i := 0; i < len(list); i++ {
+		if newFileName == list[i].Name() {
+			newFileName += tmpFileName
+			i = 0
+		} else {
+			returnValue = newFileName
+		}
+	}
+	return returnValue
+}
+
 //
 //defer conn.Close() // не надо ставить - это означает отключение связи клиента с сервером
 //time.Sleep(200 * time.Second)
-
 
 //	fmt.Println("Connected to server, start receiving the file name and file size")
 //	bufferFileName := make([]byte, 64)

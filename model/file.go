@@ -29,8 +29,8 @@ func NewFile(name string, conn net.Conn) *File {
 func (f *File) listOfFile(user *User) {
 	var files []string
 	var (
-		_, b, _, _ = runtime.Caller(0)
-		basepath   = filepath.Dir(b)
+		_, _, _, _ = runtime.Caller(0)
+		basepath   = filepath.Dir("./")
 	)
 
 	root := basepath
@@ -48,14 +48,14 @@ func (f *File) listOfFile(user *User) {
 	user.outgoing <- "\n"
 }
 
-func (f *File) sendFiles( name string)  {
+func (f *File) sendFiles(name string) {
 	fmt.Println("A client has connected!")
 	//defer connection.Close()
 	//time.Sleep(20 * time.Second)
 	file, err := os.Open("Test")
-	fmt.Println("file is :",file)
+	fmt.Println("file is :", file)
 	if err != nil {
-		fmt.Println("file isn't open :",err)
+		fmt.Println("file isn't open :", err)
 		return
 	}
 	fileInfo, err := file.Stat()
@@ -67,7 +67,7 @@ func (f *File) sendFiles( name string)  {
 	fileName := fillString(fileInfo.Name(), 64)
 
 	fmt.Println("Sending filename and filesize!")
-	_,err = f.conn.Write([]byte(fileSize))
+	_, err = f.conn.Write([]byte(fileSize))
 	if err != nil {
 		log.Println("fileSize bad valye ")
 	}
@@ -81,10 +81,10 @@ func (f *File) sendFiles( name string)  {
 	fmt.Println("Start sending file!")
 	for {
 		_, err = file.Read(sendBuffer)
-			if err == io.EOF {
-				log.Printf("Error is : %s", err)
-				break
-			}
+		if err == io.EOF {
+			log.Printf("Error is : %s", err)
+			break
+		}
 		f.conn.Write(sendBuffer)
 	}
 	fmt.Println("File has been sent!")

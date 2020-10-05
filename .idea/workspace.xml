@@ -28,12 +28,13 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/client/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/client/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/server/1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/server/123.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/server/Test" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/server/Test" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/server/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/server/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/command.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/command.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/file.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/file.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/message.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/message.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/serverModel.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/serverModel.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/userModel.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/userModel.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +48,7 @@
       </list>
     </option>
   </component>
-  <component name="GOROOT" path="$USER_HOME$/sdk/go1.15" />
+  <component name="GOROOT" path="/usr/lib/go-1.13" />
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
@@ -85,6 +86,27 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
+      <module name="TCP" />
+      <working_directory value="$PROJECT_DIR$" />
+      <go_parameters value="-i" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$" />
+      <package value="TCPClient" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
+      <module name="TCP" />
+      <working_directory value="$PROJECT_DIR$" />
+      <go_parameters value="-i" />
+      <framework value="gotest" />
+      <kind value="DIRECTORY" />
+      <package value="TCPClient" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
     <configuration name="go build TCPClient/cmd/server" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="TCP" />
       <working_directory value="$PROJECT_DIR$" />
@@ -94,11 +116,6 @@
       <directory value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Go Build.go build TCPClient/cmd/server" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
@@ -130,11 +147,11 @@
       <screen x="0" y="-1057" width="1920" height="1057" />
     </state>
     <state x="725" y="-814" width="438" height="576" key="#Build_Tags_&amp;_Vendoring/0.-1057.1920.1057/0.23.1920.1076@0.-1057.1920.1057" timestamp="1600718692562" />
-    <state x="791" y="489" key="#GOROOT" timestamp="1601741119432">
-      <screen x="0" y="23" width="1920" height="1072" />
+    <state x="2711" y="469" key="#GOROOT" timestamp="1601889385184">
+      <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="791" y="489" key="#GOROOT/0.23.1920.1072@0.23.1920.1072" timestamp="1601741119432" />
-    <state x="2711" y="469" key="#GOROOT/0.27.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601367056084" />
+    <state x="2711" y="469" key="#GOROOT/0.27.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601889385184" />
     <state x="2615" y="365" width="592" height="357" key="#Notifications" timestamp="1599831423682">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
@@ -189,10 +206,10 @@
       <screen x="0" y="23" width="1920" height="1072" />
     </state>
     <state x="803" y="320" key="refactoring.ChangeSignatureDialog/0.23.1920.1072@0.23.1920.1072" timestamp="1601741152830" />
-    <state x="659" y="260" width="672" height="673" key="search.everywhere.popup" timestamp="1601814715817">
-      <screen x="0" y="23" width="1920" height="1072" />
+    <state x="2579" y="239" width="672" height="678" key="search.everywhere.popup" timestamp="1601904955904">
+      <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="659" y="260" width="672" height="673" key="search.everywhere.popup/0.-1057.1920.1057/0.23.1920.1072@0.23.1920.1072" timestamp="1601814715817" />
-    <state x="2579" y="239" width="672" height="678" key="search.everywhere.popup/0.27.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601543042553" />
+    <state x="2579" y="239" width="672" height="678" key="search.everywhere.popup/0.27.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601904955904" />
   </component>
 </project>

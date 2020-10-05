@@ -66,11 +66,11 @@ func (s *Server) Leave(user *User) {
 }
 
 // Почитай про каналы и горутины.
-func (s *Server) SendAll2(msg *Message) {
-	for _, user := range s.users {
-		user.outgoing <- msg.text
-	}
-}
+//func (s *Server) SendAll2(msg *Message) {
+//	for _, user := range s.users {
+//		user.outgoing <- msg.text
+//	}
+//}
 
 //func (s *Server) SendMessage(msg *Message) {
 //	s.message = append(s.message, msg)
